@@ -176,14 +176,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("submeteu");
       if (this.userForm.pass1 != this.userForm.pass2) {
         this.showErrorMessage = true;
         this.errorMessage = "As senhas nao sao iguais, por favor verifique.";
       } else {
         this.showErrorMessage = false;
         this.users.push({
-          id: (this.users.length = 1),
+          id: (this.users.length + 1),
           ...this.userForm,
         });
       }
