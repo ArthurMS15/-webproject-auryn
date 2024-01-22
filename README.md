@@ -43,3 +43,7 @@ Desenvolvimento de um formulário de cadastro com validação de dados, utilizan
 ## 6. Testes Responsivos
 
 - Teste em diferentes telas.
+
+## 7. Interação com formulário e Renderização de elementos, ambos via JS. E implementando VueJs
+
+- Título auto explicativo.
