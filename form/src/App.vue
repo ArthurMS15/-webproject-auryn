@@ -157,7 +157,7 @@
               <th scope="row">{{ user.id }}</th>
               <td>{{ user.name }}</td>
               <td>{{ user.phone }}</td>
-              <td>{{ user.birthDate }}</td>
+              <td>{{ maskBrazilianDate(user.birthDate) }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.cpf }}</td>
             </tr>
@@ -185,6 +185,10 @@ export default {
     };
   },
   methods: {
+    maskBrazilianDate(dataISO) {
+      const data = new Date(dataISO);
+      return new Intl.DateTimeFormat('pt-BR').format(data);
+    },
     onSubmit() {
       console.log("submeteu");
       if (this.userForm.pass1 != this.userForm.pass2) {
