@@ -192,25 +192,42 @@ export default {
         this.errorMessage = "As senhas não são iguais, por favor verifique.";
       } else {
         this.showErrorMessage = false;
-        // this.users.push({
-        //   id: this.users.length = 1,
-        //   ...this.userForm})
-        const data = new URLSearchParams();
-        for (var [key, value] of Object.entries(this.userForm)) {
-          data.append(key, value);
-        }
-        //fazer um catch resolvendo possiveis erros
         axios
-          .post("http://localhost:9090/users", data)
-          .then(() => {
-            this.showSuccessMessage = true; // Ativar a mensagem de sucesso
-            this.getUsers(); // Atualizar a lista de usuários
+          .get(`http://localhost:9090/users/check-email/${this.userForm.email}`)
+          .then((response) => {
+            if (response.data.exists) {
+              this.showErrorMessage = true;
+              this.errorMessage =
+                "Este e-mail já está registrado. Por favor, use outro.";
+            } else {
+              // Se o e-mail não existir, criar o novo usuário
+              // this.users.push({
+              //   id: this.users.length = 1,
+              //   ...this.userForm})
+              const data = new URLSearchParams();
+              for (var [key, value] of Object.entries(this.userForm)) {
+                data.append(key, value);
+              }
+
+              axios
+                .post("http://localhost:9090/users", data)
+                .then(() => {
+                  this.showSuccessMessage = true;
+                  this.getUsers();
+                })
+                .catch((error) => {
+                  console.error("Erro ao criar conta:", error);
+                  this.showErrorMessage = true;
+                  this.errorMessage =
+                    "Ocorreu um erro ao criar a conta. Tente novamente.";
+                });
+            }
           })
           .catch((error) => {
-            console.error("Erro ao criar conta:", error);
+            console.error("Erro ao verificar e-mail:", error);
             this.showErrorMessage = true;
             this.errorMessage =
-              "Ocorreu um erro ao criar a conta. Tente novamente.";
+              "Ocorreu um erro ao verificar o e-mail. Tente novamente.";
           });
       }
     },
