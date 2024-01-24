@@ -128,6 +128,13 @@
           >
             {{ errorMessage }}
           </div>
+          <div
+            class="alert alert-success"
+            v-if="showSuccessMessage"
+            id="successMessage"
+          >
+            {{ successMessage }}
+          </div>
           <input
             class="p-2 px-5 w-auto btn btn-primary btn-lg m-auto"
             type="submit"
@@ -170,7 +177,9 @@ export default {
   data: function () {
     return {
       showErrorMessage: false,
+      showSuccessMessage: false,
       errorMessage: "Aconteceu algo de errado",
+      successMessage: "Conta criada com sucesso! Você pode fazer login agora.",
       userForm: {},
       users: [],
     };
@@ -180,7 +189,7 @@ export default {
       console.log("submeteu");
       if (this.userForm.pass1 != this.userForm.pass2) {
         this.showErrorMessage = true;
-        this.errorMessage = "As senhas nao sao iguais, por favor verifique.";
+        this.errorMessage = "As senhas não são iguais, por favor verifique.";
       } else {
         this.showErrorMessage = false;
         // this.users.push({
@@ -191,15 +200,29 @@ export default {
           data.append(key, value);
         }
         //fazer um catch resolvendo possiveis erros
-        axios.post("http://localhost:9090/users", data).then(() => {
-          this.getUsers();
-        });
+        axios
+          .post("http://localhost:9090/users", data)
+          .then(() => {
+            this.showSuccessMessage = true; // Ativar a mensagem de sucesso
+            this.getUsers(); // Atualizar a lista de usuários
+          })
+          .catch((error) => {
+            console.error("Erro ao criar conta:", error);
+            this.showErrorMessage = true;
+            this.errorMessage =
+              "Ocorreu um erro ao criar a conta. Tente novamente.";
+          });
       }
     },
     getUsers: function () {
-      axios.get("http://localhost:9090/users").then((response) => {
-        this.users = response.data;
-      });
+      axios
+        .get("http://localhost:9090/users")
+        .then((response) => {
+          this.users = response.data;
+        })
+        .catch((error) => {
+          console.error("Erro ao obter usuários:", error);
+        });
       // var oReq = new XMLHttpRequest();
       // var global = this;
 
