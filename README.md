@@ -1,6 +1,15 @@
 # -webproject-auryn
 Desenvolvimento de um formulário de cadastro com validação de dados, utilizando HTML, CSS e Bootstrap. O formulário deve ser implementado com VueJs ou React, e os dados devem ser salvos em um banco de dados usando o framework Symfony no backend.
 
+# Descrição e tempo decorrido (aproximado) das atividades:
+- Elementos do Formulário, Viewport, Ajustes de Campo e Tamanho do Container (Estrutura inicial com bootstrap) além daValidação de Dados, Centralização de Logo, Título, Botão de Submissão e Responsividade (verificação de senhas iguais): **1h**;
+- Respostas teóricas para Boas Práticas de Comunicação e Usabilidade: **20min**;
+- Interação com formulário, renderização de elementos com JavaScript puro, e início de implementação com VueJS: **1h40min**;
+- Configuração de ambiente Docker e WSL2: **40min**;
+- Implementando Backend (banco de dados) com Symfony: **1h30min**;
+- Conectando frontend com backend: **1h10min**;
+- Retoques finais (alerta de conta criada com sucesso, verificação de email ja cadastrado, máscara para melhor visualização de data e criptografia de senha (o Symfony utiliza a interface UserPasswordEncoderInterface para realizar a codificação segura da senha do usuário, com bcrypt sendo o algoritmo utilizado)): **1h30min**;
+
 # Exercício: Formulário de Cadastro em HTML. Além de Espaçamentos e Responsividade com Bootstrap
 
 ## 1. Estrutura Inicial e Tamanho do Container:
