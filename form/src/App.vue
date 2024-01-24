@@ -162,6 +162,7 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: "App",
@@ -176,17 +177,43 @@ export default {
   },
   methods: {
     onSubmit() {
+      console.log("submeteu");
       if (this.userForm.pass1 != this.userForm.pass2) {
         this.showErrorMessage = true;
         this.errorMessage = "As senhas nao sao iguais, por favor verifique.";
       } else {
         this.showErrorMessage = false;
-        this.users.push({
-          id: (this.users.length + 1),
-          ...this.userForm,
+        // this.users.push({
+        //   id: this.users.length = 1,
+        //   ...this.userForm})
+        const data = new URLSearchParams();
+        for (var [key, value] of Object.entries(this.userForm)) {
+          data.append(key, value);
+        }
+        //fazer um catch resolvendo possiveis erros
+        axios.post("http://localhost:9090/users", data).then(() => {
+          this.getUsers();
         });
       }
     },
+    getUsers: function () {
+      axios.get("http://localhost:9090/users").then((response) => {
+        this.users = response.data;
+      });
+      // var oReq = new XMLHttpRequest();
+      // var global = this;
+
+      // oReq.addEventListener("load", function(event){
+      //   global.users = JSON.parse(event.target.response)
+      // });
+
+      // oReq.open("GET", "http://localhost:9090/users");
+      // oReq.send();
+    },
+  },
+
+  mounted: function () {
+    this.getUsers();
   },
 };
 </script>

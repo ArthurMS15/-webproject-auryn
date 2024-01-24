@@ -40,10 +40,14 @@ Desenvolvimento de um formulário de cadastro com validação de dados, utilizan
 - Utilize a fonte *Work Sans* do Google Fonts.
 - Aplique mudanças com folha de estilos em cascata (CSS).
 
-## 6. Testes Responsivos
+## 6. Testes Responsivos:
 
 - Teste em diferentes telas.
 
-## 7. Interação com formulário e Renderização de elementos, ambos via JS. E implementando VueJs
+## 7. Interação com formulário e Renderização de elementos, ambos via JS. E implementando VueJs:
 
 - Título auto explicativo.
+
+## 8. Configuração do backend:
+
+- Ambiente de Desenvolvimento Symfony com docker e WSL 2
