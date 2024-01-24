@@ -51,3 +51,5 @@ Desenvolvimento de um formulário de cadastro com validação de dados, utilizan
 ## 8. Configuração do backend:
 
 - Ambiente de Desenvolvimento Symfony com docker e WSL 2
+- Backend/banco de dados implementando com Symfony
+- Conectando frontend com backend (Status de carregando e fazer POST para o)
